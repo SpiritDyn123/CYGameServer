@@ -1,0 +1,48 @@
+﻿生成启动时间为 2016/1/25 16:59:33。
+     1>项目“D:\MyProjectCodes\MyGameServer\MyGameServer\Dlls\CYSocket\CYSocket.vcxproj”在节点 2 上(Rebuild 个目标)。
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(357,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I../../../Common /I../../../Include /I.././libs/StaticLog_lib/SourceFile /I.././../libs/StaticLog_lib/SourceFile /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D CYSOCKET_EXPORTS /D _SCL_SECURE_NO_WARNINGS /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Debug\CYSocket.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I../../../Common /I../../../Include /I.././libs/StaticLog_lib/SourceFile /I.././../libs/StaticLog_lib/SourceFile /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D CYSOCKET_EXPORTS /D _SCL_SECURE_NO_WARNINGS /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt CYSocket.cpp SourceFile\CClientSocket.cpp SourceFile\CConnectionChannel.cpp SourceFile\COpensslEncrypter.cpp SourceFile\COpensslEncrypter_Client.cpp SourceFile\CServerSocket.cpp SourceFile\CSocketSystem.cpp SourceFile\CThread.cpp SourceFile\CThreadExit.cpp SourceFile\CThreadQueue.cpp SourceFile\InetAddress.cpp SourceFile\LogicThreadMain.cpp SourceFile\SocketOps.cpp SourceFile\TcpAccepter.cpp
+         TcpAccepter.cpp
+         SocketOps.cpp
+         LogicThreadMain.cpp
+         InetAddress.cpp
+         CThreadQueue.cpp
+         CThreadExit.cpp
+         CThread.cpp
+         CSocketSystem.cpp
+         CServerSocket.cpp
+         COpensslEncrypter_Client.cpp
+         COpensslEncrypter.cpp
+         CConnectionChannel.cpp
+         CClientSocket.cpp
+         CYSocket.cpp
+         正在生成代码...
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I../../../Common /I../../../Include /I.././libs/StaticLog_lib/SourceFile /I.././../libs/StaticLog_lib/SourceFile /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D CYSOCKET_EXPORTS /D _SCL_SECURE_NO_WARNINGS /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt dllmain.cpp
+         dllmain.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"../../../Bin\CYSocket.dll" /INCREMENTAL /NOLOGO /LIBPATH:../../../Libraries ws2_32.lib libeay32.lib ssleay32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"../../../Bin\CYSocket.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"../../../Bin\CYSocket.lib" /MACHINE:X86 /DLL Debug\CYSocket.obj
+         Debug\dllmain.obj
+         Debug\CClientSocket.obj
+         Debug\CConnectionChannel.obj
+         Debug\COpensslEncrypter.obj
+         Debug\COpensslEncrypter_Client.obj
+         Debug\CServerSocket.obj
+         Debug\CSocketSystem.obj
+         Debug\CThread.obj
+         Debug\CThreadExit.obj
+         Debug\CThreadQueue.obj
+         Debug\InetAddress.obj
+         Debug\LogicThreadMain.obj
+         Debug\SocketOps.obj
+         Debug\TcpAccepter.obj
+         Debug\stdafx.obj
+            正在创建库 ../../../Bin\CYSocket.lib 和对象 ../../../Bin\CYSocket.exp
+         CYSocket.vcxproj -> D:\MyProjectCodes\MyGameServer\MyGameServer\Dlls\CYSocket\../../../Bin\CYSocket.dll
+     1>已完成生成项目“D:\MyProjectCodes\MyGameServer\MyGameServer\Dlls\CYSocket\CYSocket.vcxproj”(Rebuild 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:16.29
