@@ -8,20 +8,38 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dlls", "Dlls", "{324367A8-CB8B-45BD-9B50-15D58AB4BD03}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameServer", "Apps\GameServer\GameServer.vcxproj", "{4BE4B241-0DBD-48CA-962F-482B2587033D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A88C6457-8C1B-46AF-98B7-AFF2E6A6C64E} = {A88C6457-8C1B-46AF-98B7-AFF2E6A6C64E}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{92F56D38-AC17-4D14-9538-6123FC655815}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StaticLog_lib", "libs\StaticLog_lib\StaticLog_lib.vcxproj", "{A88C6457-8C1B-46AF-98B7-AFF2E6A6C64E}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CYSocket", "Dlls\CYSocket\CYSocket.vcxproj", "{AC1B6A02-691B-486F-B963-02AF1DCF021D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A88C6457-8C1B-46AF-98B7-AFF2E6A6C64E} = {A88C6457-8C1B-46AF-98B7-AFF2E6A6C64E}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestDll", "Dlls\TestDll\TestDll.vcxproj", "{C9C73433-6720-4C57-ADCB-DC89C5D875CB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A88C6457-8C1B-46AF-98B7-AFF2E6A6C64E} = {A88C6457-8C1B-46AF-98B7-AFF2E6A6C64E}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestClientApp", "Apps\TestClientApp\TestClientApp.vcxproj", "{86BCEAFC-F3DA-417F-B2EA-585955BF0A74}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A88C6457-8C1B-46AF-98B7-AFF2E6A6C64E} = {A88C6457-8C1B-46AF-98B7-AFF2E6A6C64E}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestCppApp", "Apps\TestCppApp\TestCppApp.vcxproj", "{5A56DC73-B491-45C8-8FDD-0A851D73462C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A88C6457-8C1B-46AF-98B7-AFF2E6A6C64E} = {A88C6457-8C1B-46AF-98B7-AFF2E6A6C64E}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DBVestibuleServer", "Apps\DBVestibuleServer\DBVestibuleServer.vcxproj", "{B0AADE36-B89F-4640-8478-21D6E9938D3C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A88C6457-8C1B-46AF-98B7-AFF2E6A6C64E} = {A88C6457-8C1B-46AF-98B7-AFF2E6A6C64E}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
