@@ -7,7 +7,7 @@
 #include <string>
 #include <map>
 #include "ISocketSysterm.h"
-
+#include "ILogDefines.h"
 #include "mysql_connection.h"
 #include "mysql_driver.h" 
 #include "cppconn/driver.h"  
@@ -16,7 +16,6 @@
 #include "cppconn/metadata.h"  
 #include "cppconn/exception.h"  
 
-#include "CLogger.h"
 #include "CIniFile.h"
 #include "CServerAcceptSink.h"
 

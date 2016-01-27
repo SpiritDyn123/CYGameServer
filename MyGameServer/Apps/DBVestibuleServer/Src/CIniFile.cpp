@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "CIniFile.h"
-#include "CLogger.h"
+#include "ILogDefines.h"
 
 CIniFile::CIniFile(std::string fileName) :
 _fileName(fileName)
@@ -49,7 +49,7 @@ _fileName(fileName)
 				iterApp = _appValues.find(strData);
 				if (iterApp != _appValues.end())
 				{
-					LOG_ERROR << "ini文件app:" << iterApp->first << "存在两个相同的app";
+					LOG_ERROR("ini文件app: %s 存在两个相同的app", iterApp->first.c_str());
 				}
 				else
 				{
@@ -84,7 +84,7 @@ _fileName(fileName)
 					iterKey = iterApp->second.find(key);
 					if (iterKey != iterApp->second.end())
 					{
-						LOG_ERROR << "ini文件app:" << iterApp->first << "存在两个相同的Key";
+						LOG_ERROR("ini文件app:%s 存在两个相同的Key", iterApp->first.c_str());
 					}
 					else
 					{

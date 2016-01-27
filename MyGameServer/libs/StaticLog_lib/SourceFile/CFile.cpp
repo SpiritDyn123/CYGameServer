@@ -2,13 +2,11 @@
 #include <time.h>
 #include <assert.h>
 
-using namespace std;
-
-CFile::CFile(string fileName)
+CFile::CFile(std::string fileName)
 :_fileName(fileName),
 _writtenBytes(0)
 {
-	_fp = fopen(_fileName.c_str(), "a");
+	_fp = fopen(_fileName.c_str(), "a+");
 	assert(_fp != NULL);
 }
 
@@ -46,18 +44,18 @@ void CFile::flush()
 	fflush(_fp);
 }
 
-void CFile::resetFile(string fileName)
+void CFile::resetFile(std::string fileName)
 {
 	if (_fp)
 		fclose(_fp);
 
 	_fileName = fileName;
-	_fp = fopen(_fileName.c_str(), "a");
+	_fp = fopen(_fileName.c_str(), "a+");
 	assert(_fp != NULL);
 	_writtenBytes = 0;
 }
 
-CLogFile::CLogFile(string baseFileName, int rolFileSize, int flushInterval/* = 3*/) :
+CLogFile::CLogFile(std::string baseFileName, int rolFileSize, int flushInterval/* = 3*/) :
 _baseFileName(baseFileName),
 _rolFileSize(rolFileSize),
 _flushInterval(flushInterval),
@@ -73,14 +71,14 @@ CLogFile::~CLogFile()
 
 }
 
-string CLogFile::GetRollFileName(string baseName, time_t &now)
+std::string CLogFile::GetRollFileName(std::string baseName, time_t &now)
 {
 	now = time(NULL);
 
 	tm t;
 	localtime_s(&t, &now);
 
-	string fileName(baseName);
+	std::string fileName(baseName);
 	char timeStr[32];
 	sprintf_s(timeStr, 32, "%4d-%02d-%02d_%02d_%02d_%02d"
 		, t.tm_year + 1900
@@ -135,7 +133,7 @@ void CLogFile::flush()
 void CLogFile::RollFile()
 {
 	time_t now;
-	string fileName = GetRollFileName(_baseFileName, now);
+	std::string fileName = GetRollFileName(_baseFileName, now);
 	_curFile.resetFile(fileName);
 	_lastDay = now / KOneDayTotalSec * KOneDayTotalSec;
 	_lastRolTime = now;

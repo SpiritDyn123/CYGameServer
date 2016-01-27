@@ -1,7 +1,5 @@
 #include "stdafx.h"
 #include "CConnectionSinkPool.h"
-#include "CLogger.h"
-
 
 void CConnectionSink::OnRecv(const char* Buf, int nLen)
 {

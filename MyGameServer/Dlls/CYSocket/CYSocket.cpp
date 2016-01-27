@@ -8,7 +8,7 @@
 
 extern "C" __declspec(dllexport) bool CreateSocketSystem(ISocketSysterm **pSocketSys)
 {
-	*pSocketSys = g_socketSys;
+	*pSocketSys = new CSocketSystem;
 
 	return true;
 }

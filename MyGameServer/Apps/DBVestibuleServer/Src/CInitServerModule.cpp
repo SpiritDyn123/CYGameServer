@@ -1,39 +1,48 @@
 #include "stdafx.h"
 #include "CInitServerModule.h"
-#include "CLogger.h"
+
+ILog * g_log = NULL;
 
 CInitServerModule::CInitServerModule() :
 _lastOpMode(omNone),
-_serverEvent(CreateEvent(NULL, FALSE, FALSE, NULL))
+_serverEvent(CreateEvent(NULL, FALSE, FALSE, NULL)),
+_releaseEvent(CreateEvent(NULL, FALSE, FALSE, NULL))
 {
 	assert(_serverEvent);
+	assert(_releaseEvent);
 }
 
 CInitServerModule::~CInitServerModule()
 {
 	CloseHandle(_serverEvent);
 	_serverEvent = NULL;
+
+	CloseHandle(_releaseEvent);
+	_releaseEvent = NULL;
 }
 
 bool CInitServerModule::Create()
 {
-	if (!_logMgr.Create("./Logs/DbVestibuleServer"))
+	_logHelper.Create();
+	g_log = _logHelper.GetLog();
+	assert(g_log);
+	if (!g_log->Create("./Logs/DBVestibuleServer"))
 	{
 		return false;
 	}
 
 	_sockHelper.Create();
 
-	if (!_sockHelper->Create("./Logs/DbVSSocket"))
+	if (!_sockHelper->Create("./Logs/DBVSSocket"))
 	{
-		LOG_ERROR << "_sockHelper Create Error";
+		LOG_ERROR("_sockHelper Create Error");
 		return false;
 	}
 
 	ILogicThread *logicThread = _sockHelper->GetLogicThread();
 	if (!logicThread)
 	{
-		LOG_ERROR << "_sockHelper GetLogicThread Error";
+		LOG_ERROR("_sockHelper GetLogicThread Error");
 		_sockHelper->Release();
 		return false;
 	}
@@ -47,8 +56,9 @@ bool CInitServerModule::Create()
 void CInitServerModule::Release()
 {
 	SetEventMode(omCloseServer);
-	LOG_INFO << "服务器关闭中...";
-	Sleep(3000);
+	LOG_INFO("服务器关闭中...");
+
+	WaitForSingleObject(_releaseEvent, INFINITE);
 
 	ILogicThread *logThread = _sockHelper->GetLogicThread();
 	if (logThread)
@@ -56,8 +66,13 @@ void CInitServerModule::Release()
 		logThread->RemoveEvent(_serverEvent);
 	}
 
+	_sockHelper->Release();
+
 	_sockHelper.Release();
-	_logMgr.Release();
+
+	g_log->Release();
+
+	_logHelper.Release();
 }
 
 void CInitServerModule::SetEventMode(OperateMode mode)
@@ -75,5 +90,6 @@ void CInitServerModule::OnEvent()
 	else if (_lastOpMode == omCloseServer)
 	{
 		_server.CloseServer(_sockHelper.GetSocketSys());
+		SetEvent(_releaseEvent);
 	}
 }

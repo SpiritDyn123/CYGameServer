@@ -4,12 +4,11 @@
 #include <Windows.h>
 #include <iostream>
 #include <map>
-
+#include "ILogDefines.h"
 #include "ISocketSysterm.h"
 #include "CVestibuleServer.h" 
-#include "CLog.h"
-#include "CLogger.h"
 #include "CIniFile.h"
+
 class CInitServerModule : public IEventSink
 {	
 public:
@@ -33,10 +32,11 @@ public:
 	virtual void OnEvent();
 
 private:
-	CLog _logMgr;
+	CLogHelper _logHelper;
 	CVestibuleServer _server;
 	CSocketSystermHepler _sockHelper;
 	HANDLE _serverEvent;
+	HANDLE _releaseEvent;
 	OperateMode  _lastOpMode;
 };
 #endif

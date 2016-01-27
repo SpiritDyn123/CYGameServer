@@ -36,6 +36,12 @@
     <ClCompile Include="SourceFile\CFile.cpp">
       <Filter>SourceFile</Filter>
     </ClCompile>
+    <ClCompile Include="SourceFile\CThread.cpp">
+      <Filter>SourceFile</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFile\CThreadExit.cpp">
+      <Filter>SourceFile</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceFile\CLog.h">
@@ -51,6 +57,12 @@
       <Filter>SourceFile</Filter>
     </ClInclude>
     <ClInclude Include="SourceFile\CFile.h">
+      <Filter>SourceFile</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFile\CThread.h">
+      <Filter>SourceFile</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFile\CThreadExit.h">
       <Filter>SourceFile</Filter>
     </ClInclude>
   </ItemGroup>

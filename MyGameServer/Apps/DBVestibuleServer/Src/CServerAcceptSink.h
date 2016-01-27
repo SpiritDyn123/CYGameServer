@@ -3,6 +3,7 @@
 #include <Windows.h>
 #include <ISocketSysterm.h>
 #include "CConnectionSinkPool.h"
+#include "ILogDefines.h"
 
 class CServerAcceptSink : public IServerSocketSink
 {

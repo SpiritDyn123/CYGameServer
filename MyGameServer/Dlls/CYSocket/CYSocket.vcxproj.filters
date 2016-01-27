@@ -27,9 +27,6 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFile\CThread.h">
-      <Filter>SourceFile</Filter>
-    </ClInclude>
     <ClInclude Include="SourceFile\LogicThreadMain.h">
       <Filter>SourceFile</Filter>
     </ClInclude>
@@ -60,13 +57,16 @@
     <ClInclude Include="SourceFile\COpensslEncrypter_Client.h">
       <Filter>SourceFile</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFile\CThreadExit.h">
-      <Filter>SourceFile</Filter>
-    </ClInclude>
     <ClInclude Include="SourceFile\CYSocketErrCode.h">
       <Filter>SourceFile</Filter>
     </ClInclude>
     <ClInclude Include="SourceFile\TcpAccepter.h">
+      <Filter>SourceFile</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFile\CThread.h">
+      <Filter>SourceFile</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFile\CThreadExit.h">
       <Filter>SourceFile</Filter>
     </ClInclude>
   </ItemGroup>
@@ -79,9 +79,6 @@
     </ClCompile>
     <ClCompile Include="dllmain.cpp">
       <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="SourceFile\CThread.cpp">
-      <Filter>SourceFile</Filter>
     </ClCompile>
     <ClCompile Include="SourceFile\LogicThreadMain.cpp">
       <Filter>SourceFile</Filter>
@@ -113,10 +110,13 @@
     <ClCompile Include="SourceFile\COpensslEncrypter_Client.cpp">
       <Filter>SourceFile</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFile\CThreadExit.cpp">
+    <ClCompile Include="SourceFile\TcpAccepter.cpp">
       <Filter>SourceFile</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFile\TcpAccepter.cpp">
+    <ClCompile Include="SourceFile\CThread.cpp">
+      <Filter>SourceFile</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFile\CThreadExit.cpp">
       <Filter>SourceFile</Filter>
     </ClCompile>
   </ItemGroup>

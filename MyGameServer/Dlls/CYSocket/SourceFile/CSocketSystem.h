@@ -14,11 +14,11 @@ public:
 	CSocketSystem();
 	~CSocketSystem();
 public:
-	static CSocketSystem *GetInstance()
-	{
-		static CSocketSystem t;
-		return &t;
-	}
+// 	static CSocketSystem *GetInstance()
+// 	{
+// 		static CSocketSystem t;
+// 		return &t;
+// 	}
 
 	virtual bool Create(std::string fileName);
 
@@ -43,5 +43,5 @@ private:
 	bool _running;
 };
 
-#define g_socketSys CSocketSystem::GetInstance()
+//#define g_socketSys CSocketSystem::GetInstance()
 #endif

@@ -1,8 +1,6 @@
 #include "CLog.h"
+#include <functional>
 
-bool g_outputConsole = true;
-
-CLogToFileThread *g_threadLog = NULL;
 CLog::CLog() 
 {
 }
@@ -14,48 +12,53 @@ CLog::~CLog()
 
 bool CLog::Create(const char *pLogFileName, int RolSize/* = OneGBytes*/, bool bOutputConsole/* = true*/)
 {
-	g_threadLog = new CLogToFileThread(pLogFileName, RolSize);
-	
-	g_threadLog->Start();
+	_outputConsole = bOutputConsole;
 
-	g_outputConsole = bOutputConsole;
+	SetLogOutput(std::bind(&CLog::AsyncOutput, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
 
-	SetLogOutput(AsyncOutput);
+	_logThread = new CLogToFileThread(pLogFileName, RolSize);
+
+	_logThread->Start();
 
 	return true;
 }
 
 void CLog::Release()
 {
-	if (g_threadLog == NULL)
+	if (_logThread == NULL)
 		return;
 
-	g_threadLog->Stop();
+	_logThread->Stop();
 
-	delete g_threadLog;
-	g_threadLog = NULL;
+	delete _logThread;
+	_logThread = NULL;
 }
 
 void CLog::SetLogLevel(LogLevel level)
 {
-	CLogger::SetLogLevel(level);
+	CLoggerSetLogLevel(level);
 }
 
-void CLog::SetLogOutput(CLogger::OutputFunc func)
+void CLog::SetLogOutput(OutputFunc func)
 {
-	CLogger::SetOutputFunc(func);
+	CLoggerSetOutputFunc(func);
 }
 
-void CLog::SetLogFlush(CLogger::FlushFunc func)
+void CLog::SetLogFlush(FlushFunc func)
 {
-	CLogger::SetOutputFlushFunc(func);
+	CLoggerSetOutputFlushFunc(func);
+}
+
+void CLog::SetLogCustomHead(bool state)
+{
+	CLoggerSetCustomLogHead(state);
 }
 
 void CLog::AsyncOutput(const char *data, int nLen, LogLevel level/* = LogLevel::INFO*/)
 {
-	if (g_outputConsole)
+	if (_outputConsole)
 		defaultLogOutput(data, nLen, level);
 		
-	if (g_threadLog)
-		g_threadLog->append(data, nLen);
+	if (_logThread)
+		_logThread->append(data, nLen);
 }

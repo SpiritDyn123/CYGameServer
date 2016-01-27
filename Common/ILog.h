@@ -2,8 +2,11 @@
 #define ILOG_H
 
 #include <Windows.h>
+#include <iostream>
+#include <time.h>
 
 #define OneGBytes 1024 * 1024 * 1000
+#define OneLogBuffSize 1024
 
 enum LogLevel
 {
@@ -28,26 +31,25 @@ public:
 
 	virtual void Release() = NULL;
 
-// 	virtual void Log_Trace(...) = NULL;
-// 
-// 	virtual void Log_Debug(...) = NULL;
-// 
-// 	virtual void Log_Info(...) = NULL;
-// 
-// 	virtual void Log_Warn(...) = NULL;
-// 
-// 	virtual void Log_Error(...) = NULL;
-// 
-// 	virtual void Log_Fatal(...) = NULL;
+	virtual void Log_Trace(LPCSTR szFormat, ...) = NULL;
+ 
+	virtual void Log_Debug(LPCSTR szFormat, ...) = NULL;
+
+	virtual void Log_Info(LPCSTR szFormat, ...) = NULL;
+
+	virtual void Log_Warn(LPCSTR szFormat, ...) = NULL;
+
+	virtual void Log_Error(LPCSTR szFormat, ...) = NULL;
+
+	virtual void Log_Fatal(LPCSTR szFormat, ...) = NULL;
 };
 
 class CLogHelper
 {
 public:
-	typedef bool(*CreateLogFun)(ILog **pLog);
+	typedef void(*CreateLogFun)(ILog **pLog);
 	CLogHelper() :
-		_hDll(NULL),
-		_log(NULL)
+		_hDll(NULL)
 	{
 
 	}
@@ -62,7 +64,7 @@ public:
 		Release();
 		try
 		{
-			_hDll = LoadLibrary("Log.dll");
+			_hDll = LoadLibrary("DynamicLog.dll");
 			if (_hDll == NULL)
 			{
 				throw "Can't load ChunYanNetwork.dll";
@@ -89,14 +91,55 @@ public:
 		}
 	}
 
-// 	ISocketSysterm * operator ->()
-// 	{
-// 		return _socketSys;
-// 	}
+	ILog * operator ->()
+	{
+		return _log;
+	}
 
 	ILog * GetLog()
 	{
 		return _log;
+	}
+
+public:
+	static std::string GenerateFormatFileName(char *file)
+	{
+		std::string strFName(file);
+		file = file + strFName.find_last_of('\\') + 1;
+		return std::string(file);
+	}
+
+	static std::string GenerateLogHead(char *file, int line, LogLevel level)
+	{
+		static const char *g_logLevelName[] =
+		{
+			"TRACE",
+			"DEBUG",
+			"INFO",
+			"WARN",
+			"ERR",
+			"FATAL",
+		};
+
+		std::string fFileName = GenerateFormatFileName(file);
+
+		time_t tNow = time(NULL);
+		tm t;
+		localtime_s(&t, &tNow);
+
+		char *timeStr = new char[32];
+		sprintf_s(timeStr, 32, "%4d-%02d-%02d %02d:%02d:%02d"
+			, t.tm_year + 1900
+			, t.tm_mon + 1
+			, t.tm_mday
+			, t.tm_hour
+			, t.tm_min
+			, t.tm_sec);
+
+		char szBuff[OneLogBuffSize] = { 0 };
+		//(LogLevel 文件名:line)(时间):
+		sprintf_s(szBuff, OneLogBuffSize, "(%s %s:%d)(%s):", g_logLevelName[level], fFileName.c_str(), line, timeStr);
+		return std::string(szBuff);
 	}
 
 private:

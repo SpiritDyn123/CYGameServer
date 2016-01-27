@@ -11,6 +11,7 @@ public:
 
 	virtual void StopThread() = NULL;
 
+	virtual void TestLibFunc() = NULL;
 };
 
 class CTestHelper
@@ -58,6 +59,11 @@ public:
 			::FreeLibrary(_hDll);
 			_hDll = NULL;
 		}
+	}
+
+	ITestSys * operator->()
+	{
+		return _pTest;
 	}
 
 	ITestSys *GetTestsys()

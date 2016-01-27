@@ -17,7 +17,7 @@ bool CVestibuleServer::StartServer(ISocketSysterm * sockSys)
 {
 	if (!sockSys)
 	{
-		LOG_ERROR << "启动服务器失败 sockSys==NULL";
+		LOG_ERROR( "启动服务器失败 sockSys==NULL");
 		return false;
 	}
 
@@ -25,7 +25,7 @@ bool CVestibuleServer::StartServer(ISocketSysterm * sockSys)
 	_sqlDriver = mysql::get_mysql_driver_instance();
 	if (!_sqlDriver)
 	{
-		LOG_ERROR << "获取sqldriver失败";
+		LOG_ERROR("获取sqldriver失败");
 		return false;
 	}
 
@@ -34,14 +34,14 @@ bool CVestibuleServer::StartServer(ISocketSysterm * sockSys)
 		, _mysqlInis.GetStrKeyValue("mysql", "password"));
 	if (!_sqlCon)
 	{
-		LOG_ERROR << "连接sql失败";
+		LOG_ERROR("连接sql失败");
 		return false;
 	}
 
 	_sqlState = _sqlCon->createStatement();
 	if (!_sqlCon)
 	{
-		LOG_ERROR << "创建sqlstate失败";
+		LOG_ERROR("创建sqlstate失败");
 		return false;
 	}
 
@@ -49,7 +49,7 @@ bool CVestibuleServer::StartServer(ISocketSysterm * sockSys)
 	_pServerSocket = sockSys->CreateServerSocket(&_acceptSink);
 	if (!_pServerSocket)
 	{
-		LOG_ERROR << "创建服务器socket失败";
+		LOG_ERROR("创建服务器socket失败");
 		return false;
 	}
 
@@ -60,11 +60,11 @@ bool CVestibuleServer::StartServer(ISocketSysterm * sockSys)
 
 	if (!_pServerSocket->Start((WORD)port, maxConns))
 	{
-		LOG_ERROR << "启动服务器失败，port=" << _serverInis.GetIntKeyValue("DbVestibule", "port");
+		LOG_ERROR("启动服务器失败，port=%d", _serverInis.GetIntKeyValue("DbVestibule", "port"));
 		return false;
 	}
 
-	LOG_INFO << "启动服务器成功";
+	LOG_INFO("启动服务器成功");
 	return true;
 }
 
@@ -72,17 +72,18 @@ bool CVestibuleServer::CloseServer(ISocketSysterm * sockSys)
 {
 	if (!sockSys)
 	{
-		LOG_ERROR << "关闭服务器失败 sockSys==NULL";
+		LOG_ERROR("关闭服务器失败 sockSys==NULL");
 		return false;
 	}
 
-	sockSys->Release();
+	_pServerSocket->Close();
 
 	_acceptSink.GetConnectionPool()->UnInit();
 
-	delete _sqlState;
-	delete _sqlCon;
-	delete _sqlDriver;
+	//mysql connector C++ 有问题
+// 	delete _sqlState;
+// 	delete _sqlCon;
+// 	delete _sqlDriver;
 
 	return true;
 }

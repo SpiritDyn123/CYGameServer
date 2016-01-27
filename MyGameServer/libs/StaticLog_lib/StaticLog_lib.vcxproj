@@ -51,11 +51,15 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>../../../Common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -84,6 +88,8 @@
     <ClCompile Include="SourceFile\CLogger.cpp" />
     <ClCompile Include="SourceFile\CLogStream.cpp" />
     <ClCompile Include="SourceFile\CLogToFileThread.cpp" />
+    <ClCompile Include="SourceFile\CThread.cpp" />
+    <ClCompile Include="SourceFile\CThreadExit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SourceFile\CFile.h" />
@@ -91,6 +97,8 @@
     <ClInclude Include="SourceFile\CLogger.h" />
     <ClInclude Include="SourceFile\CLogStream.h" />
     <ClInclude Include="SourceFile\CLogToFileThread.h" />
+    <ClInclude Include="SourceFile\CThread.h" />
+    <ClInclude Include="SourceFile\CThreadExit.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
